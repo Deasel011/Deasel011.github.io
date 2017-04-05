@@ -1,13 +1,5 @@
 window.onload(loadText("fr"));
 
-function loadText(lang) {
-    if (lang === "fr") {
-        propos = document.querySelector(".propos p");
-        propos.innerText = strings.bio.text.fr;
-    }
-}
-
-
 strings = {
     "bio": {
         "text": {
@@ -16,3 +8,10 @@ strings = {
         }
     }
 };
+
+function loadText(lang) {
+    if (lang === "fr") {
+        propos = document.querySelector(".propos p");
+        propos.innerText = strings.bio.text.fr;
+    }
+}
