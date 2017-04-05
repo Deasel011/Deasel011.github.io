@@ -1,5 +1,3 @@
-window.onload(loadText("fr"));
-
 strings = {
     "bio": {
         "text": {
@@ -15,3 +13,5 @@ function loadText(lang) {
         propos.innerText = strings.bio.text.fr;
     }
 }
+
+window.onload(loadText("fr"));
