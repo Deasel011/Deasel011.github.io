@@ -1,0 +1,19 @@
+article{
+    width: 800px;
+    margin: 0 auto;
+    -webkit-box-shadow: 0px 0px 58px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 58px -15px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 58px -15px rgba(0,0,0,0.75);
+    padding: 1em;
+    border-radius:1em;
+    background: white;
+}
+
+body{
+    background-color: lightgrey;
+}
+
+.main-container{
+    height: 100%;
+    background: url(lupin.png) center top no-repeat, url(memmanip.png) left bottom no-repeat, url(ewscript.png) right top no-repeat;
+}
