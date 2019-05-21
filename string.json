@@ -1,8 +1,14 @@
 {
-  "bio":{
+  "about":{
+    "label":{
+      "fr":"À Propos de moi",
+      "en":"About me"
+    },
     "text":{
-      "fr":"Je suis étudiant au BAC en informatique à l'Université du Québec à Montréal. Je possède un certificat en Études Videoludiques de l'Université de Montréal et je n'ai jamais terminer une majeure en Histoire dans ce même établissement... Je suis un passionné de jeux vidéos, mais n'aspire pas à en créer... je préfere utiliser et développer des méthodes de triches et d'automatisation dans ces-derniers! :)",
-      "en":"I am currently studying Computer Science at Université du Québec à Montréal. I have a certificate in Video Game Studies from University of Montreal and still have History major pending (probably dead by now)... I love video games but would never aspire to create one... I prefer to use and develop methods of cheating such as automaton! :)"
+      "fr":["Philippe Deslongchamps, Développeur","J'ai étudié l'histoire, le jeu vidéo ainsi que l'informatique et le génie logiciel à Montréal, Canada. Je suis un passionné de programmation, surtout lorsqu'il s'agit d'automatisation. Que ça soit dans un contexte en entreprise, pour des routines simples pour des bots ou encore pour l'utilisation de tests unitaires, j'adore essayer des nouvelles méthodes pour rendre ma vie et celles des autres plus faciles. Depuis le début de ma courte carrière, j'ai eu à développer en Python, C#, Javascript, Java ainsi que divers variantes de SQL.",
+        "Depuis quelque temps, je me suis retrouvé dans un rôle ou je dois faire de plus en plus de transferts de connaissances. Que ça soit dans un contexte de mentorat ou d'ateliers en entreprise, j'ai pu partager mes connaissances sur les bonnes pratiques de programmation, les tests unitaires, la programmation orientée objet, la programmation fonctionnelle, les patrons de conception... Récemment, je souhaite relever un nouveau défi; Montré à des jeunes les bases nécessaires pour être un bon programmeur en entreprise durant des conférences ou des charges de cours."],
+      "en":["I'm Philippe Deslongchamps, software developper. I've studied History, Video Game studies and Software Engineering in Montreal, Canada. I love to program anything related to automizing every day tasks, wether it's simple botting routine (for video games), complex report generation for a client or automated testing (and cheating!). I've had to develop in Python, C#, Javascript, React, Java, SQL and many more throughout my short career.",
+        "I've starting flirting with the idea of teaching what I know both at work and in school, giving various workshops about programming good practices, unit testing, object oriented programming, functionnal programming, design patterns... I've been doing lots of mentoring recently and I want to pursue a new challenge, which is to teach young programmers how to become proficient members of organizations so they can empower businesses to grow."]
     }
   }
 }
