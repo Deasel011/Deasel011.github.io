@@ -81,7 +81,7 @@ function loadText(lang) {
 }
 
 function loadMenu(callback) {
-    getHtml("_menu.html",function(status,html){
+    getHtml("menu.html",function(status,html){
         document.getElementById("nav-container").innerHTML = html;
         callback();
     })
