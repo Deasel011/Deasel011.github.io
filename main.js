@@ -38,7 +38,12 @@ function setLanguageButton(lang){
 }
 
 function useLanguage(lang){
-    loadText(lang);
+    if(window.location.pathname.match("index")) {
+        loadText(lang);
+    }
+    if(window.location.pathname.match("content")) {
+        loadContent(lang);
+    }
     setLanguageButton(lang);
 }
 
@@ -53,6 +58,13 @@ function swapLanguage() {
         default:
             break;
     }
+}
+
+function setContentLanguage(lang){
+    contentLabel = document.querySelector(".content-label");
+    getJSON("string.json",function(status,data){
+        contentLabel.innerText = data.content.label[lang];
+    });
 }
 
 function setAPropos(lang){
@@ -77,7 +89,66 @@ function setAPropos(lang){
 
 function loadText(lang) {
     setAPropos(lang)
+}
 
+function loadContent(lang){
+    setContentLanguage(lang);
+}
+
+function displayAvailableContent(){
+    getHtml("availableContent.html",function(status,html){
+        document.querySelector(".content-picker").innerHTML = html;
+    });
+}
+
+function hideAvailableContent(){
+    document.querySelector(".content-label").classList.add("hidden");
+    document.querySelector(".content-picker").classList.add("hidden");
+}
+
+function getMarkdown(data,callback){
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "https://api.github.com/markdown/raw", true);
+    xhr.onload = function () {
+        var status = xhr.status;
+        if (status === 200) {
+            callback(null, xhr.response);
+        } else {
+            callback(status, xhr.response);
+        }
+    };
+    xhr.send(data);
+}
+
+function choseContent(path){
+    getHtml(path,function(status,md){
+        getMarkdown(md, function(status,html){
+            document.querySelector(".content").innerHTML = html;
+            params = new URLSearchParams(window.location.search);
+            if(params.has("page")) {
+                params.delete("page");
+            }
+            params.append("page",path);
+            window.location.search = params;
+            hideAvailableContent();
+        });
+    });
+}
+
+function formatContent(path){
+    getHtml(path,function(status,md){
+        getMarkdown(md, function(status,html){
+            document.querySelector(".content").innerHTML = html;
+            hideAvailableContent();
+        });
+    });
+}
+
+function checkForContent(){
+    params = new URLSearchParams(window.location.search);
+    if(params.has("page")){
+        formatContent(params.get("page"));
+    }
 }
 
 function loadMenu(callback) {

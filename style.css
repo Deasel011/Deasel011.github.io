@@ -29,3 +29,7 @@ button{
     margin: auto;
     display: grid;
 }
+
+.hidden{
+    display: none;
+}
