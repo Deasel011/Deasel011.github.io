@@ -3,7 +3,7 @@ Une vue partielle sert à définir des éléments visuels simples souvent redond
 On peut penser tout de suite à une bannière informative.
 On peut aussi créer des vues partielles pour séparer une vue en plusieurs éléments afin de rentre le code de la vue principale beaucoup plus léger.
 Tout comme une vue, une vue partielle peut être couplée à un modèle auquel nous allons passer des données à partir de la vue appelante.
-Le rôle de la vue partielle est ainsi de faire le formatage du modèle (si une donnée lui est passée) ou de montré un élément redondant!
+Le rôle de la vue partielle est ainsi de faire le formatage du modèle (si une donnée lui est passée),de montré un élément redondant ou encore de formatter un sous-partie d'une vue!
 
 ## Comment créer une vue partielle
 À la base, une vue partielle se crée de la même façon qu’une vue traditionnelle, c'est à dire un fichier Razor (.cshtml).
@@ -18,15 +18,15 @@ Une vue partielle se préfixe par un souligner afin de la différencié d'une vu
 Il y a plusieurs méthodes disponible pour invoqué une vue partielle.
 Si nous avons besoin de remplir un modèle de la vue partielle avec des données, nous utiliserons les méthodes C# évaluées à travers le code Razor.
 ```csharp
-	<div>
-		@await Html.PartialAsync("_VueAvecModele",Model.product)
-	...
+<div>
+	@await Html.PartialAsync("_VueAvecModele",Model.product)
+...
 ```
 Il est aussi possible d'invoquer cette méthode sans donnée.
 ```csharp
-	<div>
-		@await Html.PartialAsync("_VueSansModele")
-	...
+<div>
+	@await Html.PartialAsync("_VueSansModele")
+...
 ```
 <sub>Avec l'utilisation de .Net Core, l'utilisation de méthodes asynchrones (async) est préféré et souvent obligatoire pour des raisons de performances du code.
 Pour plus de détails concernant la programmation asynchrone voir ce [lien](https://docs.microsoft.com/fr-ca/dotnet/csharp/programming-guide/concepts/async/).</sub>
@@ -34,18 +34,18 @@ Pour plus de détails concernant la programmation asynchrone voir ce [lien](http
 Une nouvelle façon d'invoqué des vue partielles à été ajoutée avec .Net Core.
 Le code Razor supporte désormais une balise "partial" qui réfère à la vue en question.
 ```html
-	<div>
-		<partial name="_VueSansModele"/>
-	...
+<div>
+	<partial name="_VueSansModele"/>
+...
 ```
 
 Lorsqu'on mentionne le nom de la vue partielle, si elle se trouve dans le même répertoire que la vue parent, nous n'avons pas besoin de mettre le chemin ni l'extension de la vue partielle.
 Par contre, si la structure du projet n'est pas standard, il est possible que l'on doivent spécifier l'emplacement et l'extension de la vue partielle.
 ```html
-	<div>
-		<partial name="../_VueDansUnRepertoireParent.cshtml"/>
-		<partial name="~/RepertoireBidon/_VueDansUnRepertoireBidonAPartirDeLaRacideDuProjet.cshtml"/>
-	...
+<div>
+	<partial name="../_VueDansUnRepertoireParent.cshtml"/>
+	<partial name="~/RepertoireBidon/_VueDansUnRepertoireBidonAPartirDeLaRacideDuProjet.cshtml"/>
+...
 ```
 
 ### Attention
