@@ -34,13 +34,13 @@ Une vue partielle se préfixe par un souligner afin de la différencié d'une vu
 ## Comment utiliser une vue partielle
 Il y a plusieurs méthodes disponible pour invoqué une vue partielle.
 Si nous avons besoin de remplir un modèle de la vue partielle avec des données, nous utiliserons les méthodes C# évaluées à travers le code Razor.
-```csharp
+```html
 <div>
 	@await Html.PartialAsync("_VueAvecModele",Model.product)
 ...
 ```
 Il est aussi possible d'invoquer cette méthode sans donnée.
-```csharp
+```html
 <div>
 	@await Html.PartialAsync("_VueSansModele")
 ...
