@@ -8,6 +8,7 @@ Le rôle de la vue partielle est ainsi de faire le formatage du modèle (si une 
 ## Comment créer une vue partielle
 À la base, une vue partielle se crée de la même façon qu’une vue traditionnelle, c'est à dire un fichier Razor (.cshtml).
 Avec Visuel Studio, on va ajouter un nouvel objet de vue dans un des répertoires prévus à cet effet.
+
 ![Right Click on the folder where you want to add the partial view then add item then select MVC Partial View](https://raw.githubusercontent.com/Deasel011/Deasel011.github.io/master/content/CreatePartial.png)
 
 Dans le cas standard, nous allons les créées sous le même répertoire que la vue appelante.
