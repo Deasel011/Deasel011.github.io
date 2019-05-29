@@ -1,7 +1,7 @@
 ### Question 1
 Nous avons vu que la vue partielle peut être utile dans deux cas. Pouvez-vous en expliquer un?
 ### Question 2
-A quoi devrait ressembler la structure d'une vue partielle?
+À quoi devrait ressembler la structure d'une vue partielle?
 
 A:
 ```html
@@ -32,7 +32,8 @@ B:
 ```
 
 ### Question 3
-Nous avons une vue partielle _ProductDetail.cshtml.
+Nous avons une vue partielle dans le fichier *_ProductDetail.cshtml*.
+
 Nous avons un modèle:
 ```csharp
 public class Product{
@@ -42,7 +43,7 @@ public class Product{
     public ProductDetail productDetail {get;set;}
 }
 ```
-Nous voulons l'utiliser dans la vue suivante:
+Nous voulons utilisez la vue partielle *_ProductDetail* avec le modèle *Product* dans la vue suivante:
 ```html
 ...
 <div class="Product">
@@ -55,16 +56,16 @@ Nous voulons l'utiliser dans la vue suivante:
 </div>
 ...
 ```
-Que devrons-nous écrire pour utiliser la vue _ProductDetail avec le modèle de la vue parent?
+Que devrons-nous écrire pour utiliser la vue *_ProductDetail* avec le modèle de la vue parent?
 
 ### Réponses
-#### 1
-Séparation en plus petits morceaux une base de code (Single Responsability Principle)(KISS)
+#### Réponse 1
+Séparation d'une base de code en plus petits morceaux (**Single Responsability Principle**)(**KISS**)
 
-Réutilisation de code qui se répète (DRY)
-#### 2
+Réutilisation de code qui se répète (**DRY**)
+#### Réponse 2
 B
-#### 3
+#### Reponse 3
 ```csharp
 @await Html.PartialAsync("_ProductDetail",Model.productDetail)
 ```
