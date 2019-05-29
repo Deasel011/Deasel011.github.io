@@ -43,7 +43,7 @@ public class Product{
     public ProductDetail productDetail {get;set;}
 }
 ```
-Nous voulons utilisez la vue partielle *_ProductDetail* avec le modèle *Product* dans la vue suivante:
+Nous voulons utiliser la vue partielle *_ProductDetail* avec le modèle *Product* dans la vue suivante:
 ```html
 ...
 <div class="Product">
