@@ -1,0 +1,66 @@
+<h3>
+    <a id="user-content-question-1" class="anchor" href="#question-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Question 1</h3>
+<p>Nous avons vu que la vue partielle peut être utile dans deux cas. Pouvez-vous en expliquer un?</p>
+<h3>
+    <a id="user-content-question-2" class="anchor" href="#question-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Question 2</h3>
+<p>A quoi devrait ressembler la structure d'une vue partielle?</p>
+<p>A:</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">html</span>&gt;
+    &lt;<span class="pl-ent">head</span>&gt;
+        &lt;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span> /&gt;
+    &lt;/<span class="pl-ent">head</span>&gt;
+&lt;<span class="pl-ent">body</span>&gt;
+    &lt;<span class="pl-ent">h1</span>&gt;@ViewData["title"]&lt;/<span class="pl-ent">h1</span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>main-container<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
+<p>B:</p>
+<div class="highlight highlight-text-html-basic"><pre>@model ModelDeTableXYZ
+&lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">table</span>&gt;
+    @foreach (var row in Model.rows){
+        &lt;<span class="pl-ent">tr</span>&gt;
+            @foreach(var colomn in row.columns){
+                &lt;<span class="pl-ent">td</span>&gt;@colomn.value&lt;/<span class="pl-ent">td</span>&gt;
+            }
+        &lt;/<span class="pl-ent">tr</span>&gt;
+    }
+    &lt;/<span class="pl-ent">table</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+<h3>
+    <a id="user-content-question-3" class="anchor" href="#question-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Question 3</h3>
+<p>Nous avons une vue partielle _ProductDetail.cshtml.
+    Nous avons un modèle:</p>
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Product</span>{
+    <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-smi">productName</span> {<span class="pl-k">get</span>;<span class="pl-k">set</span>;}
+    <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-smi">productDescription</span> {<span class="pl-k">get</span>;<span class="pl-k">set</span>;}
+    <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-smi">productRating</span> {<span class="pl-k">get</span>;<span class="pl-k">set</span>;}
+    <span class="pl-k">public</span> <span class="pl-en">ProductDetail</span> <span class="pl-smi">productDetail</span> {<span class="pl-k">get</span>;<span class="pl-k">set</span>;}
+}</pre></div>
+<p>Nous voulons l'utiliser dans la vue suivante:</p>
+<div class="highlight highlight-text-html-basic"><pre>...
+&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>Product<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">h3</span>&gt;@Model.productName&lt;/<span class="pl-ent">h3</span>&gt;
+    &lt;<span class="pl-ent">ul</span>&gt;
+        &lt;<span class="pl-ent">li</span>&gt;Description : @Model.productDescription&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span>&gt;Rating : @Model.productRating&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;/<span class="pl-ent">ul</span>&gt;
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> Inserer ici la vue partielle de détail du produit <span class="pl-c">--&gt;</span></span>
+&lt;/<span class="pl-ent">div</span>&gt;
+...</pre></div>
+<p>Que devrons-nous écrire pour utiliser la vue _ProductDetail avec le modèle de la vue parent?</p>
+<h3>
+    <a id="user-content-réponses" class="anchor" href="#r%C3%A9ponses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Réponses <button onclick="toggleResponses()">Voir Réponses</button>
+</h3>
+<div id="responses" class="hidden">
+<h4>
+    <a id="user-content-1" class="anchor" href="#1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1</h4>
+<p>Séparation en plus petits morceaux une base de code (Single Responsability Principle)(KISS)</p>
+<p>Réutilisation de code qui se répète (DRY)</p>
+<h4>
+    <a id="user-content-2" class="anchor" href="#2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2</h4>
+<p>B</p>
+<h4>
+    <a id="user-content-3" class="anchor" href="#3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3</h4>
+<div class="highlight highlight-source-cs"><pre><span class="pl-smi">@await</span> <span class="pl-smi">Html</span>.<span class="pl-en">PartialAsync</span>(<span class="pl-s"><span class="pl-pds">"</span>_ProductDetail<span class="pl-pds">"</span></span>,<span class="pl-smi">Model</span>.<span class="pl-smi">productDetail</span>)</pre></div>
+</div>

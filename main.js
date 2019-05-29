@@ -121,9 +121,7 @@ function getMarkdown(data,callback){
 }
 
 function choseContent(path){
-    getHtml(path,function(status,md){
-        getMarkdown(md, function(status,html){
-            document.querySelector(".content").innerHTML = html;
+    getHtml(path,function(status,html){
             params = new URLSearchParams(window.location.search);
             if(params.has("page")) {
                 params.delete("page");
@@ -131,16 +129,13 @@ function choseContent(path){
             params.append("page",path);
             window.location.search = params;
             hideAvailableContent();
-        });
     });
 }
 
 function formatContent(path){
-    getHtml(path,function(status,md){
-        getMarkdown(md, function(status,html){
-            document.querySelector(".content").innerHTML = html;
-            hideAvailableContent();
-        });
+    getHtml(path,function(status,html){
+        document.querySelector(".content").innerHTML = html;
+        hideAvailableContent();
     });
 }
 
@@ -163,5 +158,13 @@ document.addEventListener("DOMContentLoaded", function () {
         function(){useLanguage(language)});
 
 });
+
+function toggleResponses(){
+    if(document.getElementById("responses").classList.contains("hidden")){
+        document.getElementById("responses").classList.remove("hidden");
+    }else{
+        document.getElementById("responses").classList.add("hidden");
+    }
+}
 
 
