@@ -7,6 +7,10 @@
 - Permet de réduire considérablement la documentation associée a une base de code
 - Permet de simplifié la base de code en favorisant avec des patrons de conceptions compatible avec les méthodes de tests
 
+## FakeItEasy
+
+EN COURS DE RÉDACTION
+
 ## Atelier
 Comme exercice, nous allons télécharger le [projet d'atelier](https://github.com/Deasel011/UnitTestsWorkshop/archive/master.zip)
 (on peut aussi le cloner a partir de la branche master avec ce <a href="https://github.com/Deasel011/UnitTestsWorkshop.git">lien</a>).
