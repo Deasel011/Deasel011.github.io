@@ -5,6 +5,29 @@
 - Permet de refactoriser le code avec plus d'assurance
 - Permet de mieux comprendre l'architecture d'une base de code
 - Permet de réduire considérablement la documentation associée a une base de code
+- Permet de simplifié la base de code en favorisant avec des patrons de conceptions compatible avec les méthodes de tests
+
+## Atelier
+Comme exercice, nous allons télécharger le [projet d'atelier](https://github.com/Deasel011/UnitTestsWorkshop/archive/master.zip)
+(on peut aussi le cloner a partir de la branche master avec ce <a href="https://github.com/Deasel011/UnitTestsWorkshop.git">lien</a>).
+
+### La machine à jus
+Le but de cet atelier est d'introduire des bonnes pratiques provenant du [TDD](https://martinfowler.com/bliki/TestDrivenDevelopment.html).
+Ainsi, dans le projet que nous allons ouvrir, il y a plusieurs définitions de tests que nous allons devoir écrire puis faire passer!
+La librairie de test choisie est [XUnit](https://xunit.net/#documentation) et nous allons utiliser une librairie qui nous permet
+de faire des mocks, des fakes, des assertions complexes, et bien d'autres fonctionnalitées pour alléger les tests : [FakeItEasy](https://fakeiteasy.readthedocs.io/en/stable/).
+
+La machine a jus fonctionne avec une interface *IJuiceService* et possède une méthode *Create* qui prend en parametre une recette!
+
+Puisqu'il existe plusieurs sources d'ingrédients (fruits et ingrédients communs), nous allons cacher la source des ingrédients
+à l'aide du patron Repository. 
+Nous donnerons à cette classe une seule responsabilité; gérer l'aiguillage vers le bon réfrigérateur!
+
+Nous n'implémenterons pas les Interfaces Gateway dans cet atelier, nous allons plutôt préférer Mocké ceux-ci afin de démontrer
+qu'il n'est pas nécessaire d'avoir tout en place avant de commencer les tests. (Nous ne devrions jamais attendre que tout soit 
+prêt avant d'écrire les tests)
+
+Une branche result est disponible afin de voir un exemple de comment s'y prendre!
 
 ## Est-ce que les Test Unitaires en valent l'effort?
 Anecdote provenant de [Stack Overflow](https://stackoverflow.com/questions/67299/is-unit-testing-worth-the-effort/69263#69263) :
@@ -37,5 +60,3 @@ Anecdote provenant de [Stack Overflow](https://stackoverflow.com/questions/67299
 **...**
 
 ----
-
-### EN COURS DE REDACTION

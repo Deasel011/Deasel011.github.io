@@ -16,7 +16,42 @@
     <li>Permet de refactoriser le code avec plus d'assurance</li>
     <li>Permet de mieux comprendre l'architecture d'une base de code</li>
     <li>Permet de réduire considérablement la documentation associée a une base de code</li>
+    <li>Permet de simplifié la base de code en favorisant avec des patrons de conceptions compatible avec les méthodes de tests</li>
 </ul>
+<h2>
+    <a id="user-content-atelier" class="anchor" href="#atelier" aria-hidden="true">
+        <span aria-hidden="true" class="octicon octicon-link"></span>
+    </a>Atelier
+</h2>
+<p>Comme exercice, nous allons télécharger le
+    <a href="https://github.com/Deasel011/UnitTestsWorkshop/archive/master.zip">projet d'atelier</a>
+    (on peut aussi le cloner a partir de la branche master avec ce
+    <a href="https://github.com/Deasel011/UnitTestsWorkshop.git">lien</a>).
+</p>
+<h3>
+    <a id="user-content-la-machine-à-jus" class="anchor" href="#la-machine-%C3%A0-jus" aria-hidden="true">
+        <span aria-hidden="true" class="octicon octicon-link"></span>
+    </a>La machine à jus
+</h3>
+<p>Le but de cet atelier est d'introduire des bonnes pratiques provenant du
+    <a href="https://martinfowler.com/bliki/TestDrivenDevelopment.html" rel="nofollow">TDD</a>.
+    Ainsi, dans le projet que nous allons ouvrir, il y a plusieurs définitions de tests que nous allons devoir écrire puis faire passer!
+    La librairie de test choisie est
+    <a href="https://xunit.net/#documentation" rel="nofollow">XUnit</a> et nous allons utiliser une librairie qui nous permet
+    de faire des mocks, des fakes, des assertions complexes, et bien d'autres fonctionnalitées pour alléger les tests :
+    <a href="https://fakeiteasy.readthedocs.io/en/stable/" rel="nofollow">FakeItEasy</a>.
+</p>
+<p>La machine a jus fonctionne avec une interface
+    <em>IJuiceService</em> et possède une méthode
+    <em>Create</em> qui prend en parametre une recette!
+</p>
+<p>Puisqu'il existe plusieurs sources d'ingrédients (fruits et ingrédients communs), nous allons cacher la source des ingrédients
+    à l'aide du patron Repository.
+    Nous donnerons à cette classe une seule responsabilité; gérer l'aiguillage vers le bon réfrigérateur!</p>
+<p>Nous n'implémenterons pas les Interfaces Gateway dans cet atelier, nous allons plutôt préférer Mocké ceux-ci afin de démontrer
+    qu'il n'est pas nécessaire d'avoir tout en place avant de commencer les tests. (Nous ne devrions jamais attendre que tout soit
+    prêt avant d'écrire les tests)</p>
+<p>Une branche result est disponible afin de voir un exemple de comment s'y prendre!</p>
 <h2>
     <a id="user-content-est-ce-que-les-test-unitaires-en-valent-leffort" class="anchor" href="#est-ce-que-les-test-unitaires-en-valent-leffort" aria-hidden="true">
         <span aria-hidden="true" class="octicon octicon-link"></span>
@@ -58,8 +93,3 @@
     <strong>...</strong>
 </p>
 <hr>
-<h3>
-    <a id="user-content-en-cours-de-redaction" class="anchor" href="#en-cours-de-redaction" aria-hidden="true">
-        <span aria-hidden="true" class="octicon octicon-link"></span>
-    </a>EN COURS DE REDACTION
-</h3>
