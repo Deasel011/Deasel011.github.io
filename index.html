@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0b1020" />
-  <title>Philippe Deslongchamps — Deasel011</title>
-  <meta name="description" content="Philippe Deslongchamps (Deasel011) — software developer. Distributed systems, NATS/JetStream, Go, .NET, cloud-to-edge, security, and agentic engineering." />
+  <title>Philippe Deslongchamps · Deasel011</title>
+  <meta name="description" content="Philippe Deslongchamps (Deasel011). Distributed systems, cloud-to-edge, security, and agentic engineering. Synthwave 84 + VS Code vibes." />
 
-  <meta property="og:title" content="Philippe Deslongchamps — Deasel011" />
-  <meta property="og:description" content="Distributed systems · cloud-to-edge · security · agentic engineering · synthwave vibes" />
+  <meta property="og:title" content="Philippe Deslongchamps · Deasel011" />
+  <meta property="og:description" content="Agentic engineering · distributed systems · cloud-to-edge · security · synthwave vibes" />
   <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,19 +17,37 @@
 
   <style>
     :root{
-      --bg0:#070914; --bg1:#0b1020;
-      --text:#e6e6ff; --muted:#a8b0ffcc; --muted2:#8aa0ff99;
-      --pink:#ff4fd8; --purple:#a855ff; --cyan:#2de2e6; --blue:#3f8cff;
-      --yellow:#ffe66d; --good:#4dff88;
-      --border:#283055; --tab:#121a38; --tabActive:#18224a;
+      --bg0:#070914;
+      --bg1:#0b1020;
+
+      --text:#e6e6ff;
+      --muted:#a8b0ffcc;
+      --muted2:#8aa0ff99;
+
+      --pink:#ff4fd8;
+      --purple:#a855ff;
+      --cyan:#2de2e6;
+      --blue:#3f8cff;
+      --yellow:#ffe66d;
+      --good:#4dff88;
+
+      --border:#283055;
+      --tab:#121a38;
+      --tabActive:#18224a;
+
       --shadow:0 20px 80px rgba(0,0,0,.55);
-      --radius:18px; --radius2:14px;
+      --radius:18px;
+      --radius2:14px;
+
       --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
+
     *{box-sizing:border-box;}
     html,body{height:100%;}
     body{
-      margin:0; font-family:var(--mono); color:var(--text);
+      margin:0;
+      font-family:var(--mono);
+      color:var(--text);
       background:
         radial-gradient(1200px 700px at 60% 10%, rgba(168,85,255,.22), transparent 60%),
         radial-gradient(900px 600px at 25% 25%, rgba(45,226,230,.14), transparent 55%),
@@ -37,90 +55,213 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
+
+    /* Subtle stars + scanlines */
     .fx::before{
-      content:""; position:fixed; inset:0; pointer-events:none;
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
       background-image:
         radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.35) 40%, transparent 41%),
         radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.25) 40%, transparent 41%),
-        radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.2) 40%, transparent 41%),
+        radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.20) 40%, transparent 41%),
         radial-gradient(1px 1px at 80% 75%, rgba(255,255,255,.18) 40%, transparent 41%),
         radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,.15) 40%, transparent 41%);
-      opacity:.55; animation:drift 12s linear infinite; mix-blend-mode:screen;
+      opacity:.55;
+      animation:drift 12s linear infinite;
+      mix-blend-mode:screen;
     }
     .fx::after{
-      content:""; position:fixed; inset:0; pointer-events:none;
-      background:repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,.12) 3px);
-      opacity:.35; mix-blend-mode:multiply;
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        repeating-linear-gradient(to bottom,
+          rgba(0,0,0,0) 0px,
+          rgba(0,0,0,0) 2px,
+          rgba(0,0,0,.12) 3px
+        );
+      opacity:.35;
+      mix-blend-mode:multiply;
     }
-    @keyframes drift{0%{transform:translate3d(0,0,0);}100%{transform:translate3d(-12px,18px,0);}}
+    @keyframes drift{
+      0%{transform:translate3d(0,0,0);}
+      100%{transform:translate3d(-12px,18px,0);}
+    }
 
-    .wrap{max-width:1120px; margin:40px auto 60px; padding:0 18px;}
+    .wrap{
+      max-width:1120px;
+      margin:40px auto 60px;
+      padding:0 18px;
+    }
 
+    /* Top bar */
     .topbar{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      padding:10px 14px; border:1px solid var(--border); border-radius:var(--radius);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 14px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(18,26,56,.75), rgba(10,14,28,.55));
-      box-shadow:var(--shadow); backdrop-filter:blur(10px);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
     }
-    .brand{display:flex; align-items:center; gap:12px; min-width:220px;}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:220px;
+    }
     .dots{display:flex; gap:7px;}
     .dot{width:10px; height:10px; border-radius:999px; opacity:.9;}
-    .dot.r{background:#ff5f56;} .dot.y{background:#ffbd2e;} .dot.g{background:#27c93f;}
-    .brand h1{margin:0; font-size:14px; letter-spacing:.4px; font-weight:700; white-space:nowrap;}
-    .tagline{font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-    .pillrow{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
+    .dot.r{background:#ff5f56;}
+    .dot.y{background:#ffbd2e;}
+    .dot.g{background:#27c93f;}
+
+    .brand h1{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.4px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .tagline{
+      font-size:12px;
+      color:var(--muted);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .pillrow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
     .pill{
-      font-size:11px; padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(63,140,255,.35); background:rgba(18,26,56,.55);
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(63,140,255,.35);
+      background:rgba(18,26,56,.55);
       box-shadow:0 0 0 1px rgba(45,226,230,.08) inset;
     }
     .pill b{color:var(--cyan); font-weight:700;}
 
+    /* Editor frame */
     .frame{
-      margin-top:16px; border:1px solid var(--border); border-radius:var(--radius);
-      background:rgba(8,12,26,.55); box-shadow:var(--shadow); overflow:hidden;
+      margin-top:16px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:rgba(8,12,26,.55);
+      box-shadow:var(--shadow);
+      overflow:hidden;
       backdrop-filter:blur(10px);
     }
+
     .tabs{
-      display:flex; gap:6px; padding:10px 10px 0;
+      display:flex;
+      gap:6px;
+      padding:10px 10px 0;
       background:linear-gradient(180deg, rgba(18,26,56,.65), rgba(8,12,26,.4));
       border-bottom:1px solid rgba(40,48,85,.75);
     }
     .tab{
-      display:flex; align-items:center; gap:8px; padding:10px 12px;
-      border-radius:12px 12px 0 0; background:var(--tab);
-      border:1px solid rgba(40,48,85,.75); border-bottom:none;
-      color:var(--muted); font-size:12px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:12px 12px 0 0;
+      background:var(--tab);
+      border:1px solid rgba(40,48,85,.75);
+      border-bottom:none;
+      color:var(--muted);
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
     }
-    .tab .ico{width:10px; height:10px; border-radius:3px; background:rgba(168,85,255,.55);}
-    .tab.active{background:var(--tabActive); color:var(--text); box-shadow:0 -10px 40px rgba(255,79,216,.12);}
+    .tab .ico{
+      width:10px;
+      height:10px;
+      border-radius:3px;
+      background:rgba(168,85,255,.55);
+    }
+    .tab.active{
+      background:var(--tabActive);
+      color:var(--text);
+      box-shadow:0 -10px 40px rgba(255,79,216,.12);
+    }
     .tab.active .ico{background:rgba(45,226,230,.7);}
 
-    .content{display:grid; grid-template-columns:260px 1fr; min-height:620px;}
+    .content{
+      display:grid;
+      grid-template-columns:260px 1fr;
+      min-height:680px;
+    }
+
+    /* Sidebar */
     .sidebar{
       border-right:1px solid rgba(40,48,85,.75);
       background:linear-gradient(180deg, rgba(11,18,42,.55), rgba(10,14,28,.35));
       padding:14px 12px;
     }
     .sideTitle{
-      font-size:11px; color:var(--muted2); letter-spacing:.8px; text-transform:uppercase;
+      font-size:11px;
+      color:var(--muted2);
+      letter-spacing:.8px;
+      text-transform:uppercase;
       margin:2px 8px 10px;
     }
-    .tree{display:flex; flex-direction:column; gap:6px; padding:6px 6px 10px;}
-    .node{
-      display:flex; align-items:center; gap:10px; padding:10px 10px; border-radius:12px;
-      color:var(--muted); border:1px solid transparent; user-select:none;
+    .tree{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      padding:6px 6px 10px;
     }
-    .node:hover{background:rgba(18,26,56,.45); border-color:rgba(63,140,255,.22); color:var(--text);}
+    .node{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 10px;
+      border-radius:12px;
+      color:var(--muted);
+      border:1px solid transparent;
+      user-select:none;
+      cursor:pointer;
+    }
+    .node:hover{
+      background:rgba(18,26,56,.45);
+      border-color:rgba(63,140,255,.22);
+      color:var(--text);
+    }
+    .node.active{
+      background:rgba(24,34,74,.55);
+      border-color:rgba(45,226,230,.25);
+      color:var(--text);
+    }
     .node .badge{
-      margin-left:auto; font-size:10px; padding:2px 7px; border-radius:999px;
-      border:1px solid rgba(45,226,230,.25); color:var(--cyan); background:rgba(45,226,230,.08);
+      margin-left:auto;
+      font-size:10px;
+      padding:2px 7px;
+      border-radius:999px;
+      border:1px solid rgba(45,226,230,.25);
+      color:var(--cyan);
+      background:rgba(45,226,230,.08);
     }
     .node .file{
-      width:10px; height:12px; border-radius:2px; background:rgba(255,230,109,.55);
+      width:10px;
+      height:12px;
+      border-radius:2px;
+      background:rgba(255,230,109,.55);
       box-shadow:0 0 0 1px rgba(0,0,0,.25) inset;
     }
 
+    /* Editor panel */
     .editor{
       padding:18px 18px 0;
       background:
@@ -128,68 +269,262 @@
         radial-gradient(600px 420px at 15% 10%, rgba(45,226,230,.08), transparent 60%),
         linear-gradient(180deg, rgba(8,12,26,.25), rgba(8,12,26,.45));
     }
-    .hero{display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:16px;}
-    .headline{min-width:280px; flex:1;}
-    .headline h2{margin:0; font-size:22px; letter-spacing:.2px;}
-    .headline p{margin:10px 0 0; color:var(--muted); line-height:1.55; font-size:13px; max-width:66ch;}
+
+    .pane{display:none;}
+    .pane.active{display:block;}
+
+    .hero{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:16px;
+    }
+    .headline{
+      min-width:280px;
+      flex:1;
+    }
+    .headline h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:.2px;
+    }
+    .headline p{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:13px;
+      max-width:70ch;
+    }
 
     .neonline{
       height:2px;
       background:linear-gradient(90deg, transparent, rgba(255,79,216,.8), rgba(45,226,230,.8), transparent);
-      opacity:.7; filter:blur(.2px); margin:10px 0 14px;
+      opacity:.7;
+      filter:blur(.2px);
+      margin:10px 0 14px;
     }
 
-    .callouts{display:flex; flex-direction:column; gap:10px; min-width:280px; flex:0 0 320px;}
+    .callouts{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-width:280px;
+      flex:0 0 340px;
+    }
     .card{
       border:1px solid rgba(40,48,85,.75);
       border-radius:var(--radius2);
       background:rgba(15,23,51,.55);
-      padding:12px; box-shadow:0 0 0 1px rgba(255,79,216,.06) inset;
+      padding:12px;
+      box-shadow:0 0 0 1px rgba(255,79,216,.06) inset;
     }
-    .card h3{margin:0 0 8px; font-size:12px; letter-spacing:.6px; text-transform:uppercase; color:var(--muted2);}
-    .kv{display:grid; grid-template-columns:92px 1fr; gap:6px 10px; font-size:12px; color:var(--muted);}
+    .card h3{
+      margin:0 0 8px;
+      font-size:12px;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      color:var(--muted2);
+    }
+    .kv{
+      display:grid;
+      grid-template-columns:92px 1fr;
+      gap:6px 10px;
+      font-size:12px;
+      color:var(--muted);
+    }
     .kv b{color:var(--text); font-weight:700;}
     .kv .hi{color:var(--pink); font-weight:700;}
     .kv .hi2{color:var(--cyan); font-weight:700;}
 
-    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:12px; padding-bottom:18px;}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:12px;
+      padding-bottom:18px;
+    }
     .span6{grid-column:span 6;}
     .span12{grid-column:span 12;}
 
-    @media (max-width: 960px){ .content{grid-template-columns:1fr;} .sidebar{display:none;} .callouts{flex:1 1 320px;} }
-    @media (max-width: 720px){ .span6{grid-column:span 12;} .topbar{align-items:flex-start; flex-direction:column;} .pillrow{justify-content:flex-start;} .tagline{white-space:normal;} }
+    @media (max-width: 960px){
+      .content{grid-template-columns:1fr;}
+      .sidebar{display:none;}
+      .callouts{flex:1 1 340px;}
+    }
+    @media (max-width: 720px){
+      .span6{grid-column:span 12;}
+      .topbar{align-items:flex-start; flex-direction:column;}
+      .pillrow{justify-content:flex-start;}
+      .tagline{white-space:normal;}
+    }
 
-    .list{margin:0; padding-left:18px; color:var(--muted); font-size:12.5px; line-height:1.65;}
+    .list{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.65;
+    }
     .list li{margin:6px 0;}
     .list b{color:var(--text);}
 
-    .links{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+    .links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
     a.btn{
-      text-decoration:none; color:var(--text); font-size:12px; padding:8px 10px;
-      border-radius:12px; border:1px solid rgba(63,140,255,.35);
-      background:rgba(18,26,56,.55); box-shadow:0 0 0 1px rgba(45,226,230,.08) inset;
+      text-decoration:none;
+      color:var(--text);
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(63,140,255,.35);
+      background:rgba(18,26,56,.55);
+      box-shadow:0 0 0 1px rgba(45,226,230,.08) inset;
     }
     a.btn:hover{
       border-color:rgba(45,226,230,.45);
       box-shadow:0 0 0 1px rgba(255,79,216,.10) inset, 0 0 24px rgba(45,226,230,.12);
-      transform:translateY(-1px); transition:.15s ease;
+      transform:translateY(-1px);
+      transition:.15s ease;
     }
 
+    .codeblock{
+      margin:0;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(40,48,85,.75);
+      background:rgba(7,9,20,.55);
+      color:var(--text);
+      font-size:12px;
+      line-height:1.5;
+      overflow:auto;
+      box-shadow:0 0 0 1px rgba(45,226,230,.06) inset;
+    }
+    .codeblock .dim{color:var(--muted);}
+    .codeblock .k{color:var(--cyan);}
+    .codeblock .p{color:var(--pink);}
+    .codeblock .y{color:var(--yellow);}
+
+    /* Terminal footer */
     .terminal{
       border-top:1px solid rgba(40,48,85,.75);
       background:rgba(7,9,20,.55);
       padding:12px 14px;
       color:var(--muted);
       font-size:12px;
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
     }
     .prompt{color:var(--good); font-weight:700;}
     .cursor{
-      display:inline-block; width:9px; height:14px;
-      background:rgba(45,226,230,.8); margin-left:2px;
-      animation:blink 1s steps(2) infinite; vertical-align:-2px;
+      display:inline-block;
+      width:9px;
+      height:14px;
+      background:rgba(45,226,230,.8);
+      margin-left:2px;
+      animation:blink 1s steps(2) infinite;
+      vertical-align:-2px;
     }
     @keyframes blink{50%{opacity:0;}}
+
+    /* Command palette */
+    .paletteBackdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding:72px 18px 18px;
+      z-index:50;
+      backdrop-filter:blur(6px);
+    }
+    .palette{
+      width:min(760px, 100%);
+      border:1px solid rgba(40,48,85,.85);
+      border-radius:16px;
+      background:rgba(15,23,51,.78);
+      box-shadow:0 30px 120px rgba(0,0,0,.65);
+      overflow:hidden;
+    }
+    .paletteTop{
+      padding:12px 12px;
+      border-bottom:1px solid rgba(40,48,85,.75);
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .paletteTop input{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(63,140,255,.35);
+      background:rgba(8,12,26,.55);
+      color:var(--text);
+      outline:none;
+      font-family:var(--mono);
+      font-size:12px;
+    }
+    .paletteHint{
+      font-size:11px;
+      color:var(--muted2);
+      padding:0 12px 10px;
+    }
+    .paletteList{
+      max-height:320px;
+      overflow:auto;
+      padding:8px;
+    }
+    .cmd{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      cursor:pointer;
+      user-select:none;
+      color:var(--muted);
+    }
+    .cmd:hover{
+      background:rgba(18,26,56,.55);
+      border-color:rgba(45,226,230,.25);
+      color:var(--text);
+    }
+    .cmd .left{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      min-width:0;
+    }
+    .cmd .spark{
+      width:10px;
+      height:10px;
+      border-radius:3px;
+      background:rgba(255,79,216,.55);
+      box-shadow:0 0 0 1px rgba(0,0,0,.25) inset;
+    }
+    .cmd .name{
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .cmd .keys{
+      font-size:10px;
+      color:var(--muted2);
+      border:1px solid rgba(40,48,85,.85);
+      background:rgba(7,9,20,.45);
+      padding:3px 6px;
+      border-radius:10px;
+      flex:0 0 auto;
+    }
   </style>
 </head>
 
@@ -203,118 +538,253 @@
         <h1>deasel011</h1>
       </div>
       <div class="tagline">
-        Montreal · distributed systems · cloud-to-edge · security · agentic engineering · synthwave vibes
+        Montreal · agentic engineering · distributed systems · cloud-to-edge · security · synthwave vibes
       </div>
       <div class="pillrow" aria-label="quick tags">
-        <div class="pill"><b>Go</b> + .NET</div>
+        <div class="pill"><b>Agents</b> as core</div>
         <div class="pill"><b>NATS</b> / JetStream</div>
+        <div class="pill"><b>Go</b> + .NET</div>
         <div class="pill"><b>Azure</b> + Terraform</div>
-        <div class="pill"><b>Agents</b> + tooling</div>
       </div>
     </header>
 
     <main class="frame" role="main">
       <div class="tabs" aria-label="editor tabs">
-        <div class="tab active"><span class="ico"></span> README.md</div>
-        <div class="tab"><span class="ico"></span> projects.json</div>
-        <div class="tab"><span class="ico"></span> links.txt</div>
+        <div class="tab active" data-pane="readme"><span class="ico"></span> README.md</div>
+        <div class="tab" data-pane="agents"><span class="ico"></span> agents.md</div>
+        <div class="tab" data-pane="projects"><span class="ico"></span> projects.json</div>
+        <div class="tab" data-pane="links"><span class="ico"></span> links.txt</div>
       </div>
 
       <div class="content">
         <aside class="sidebar" aria-label="explorer">
           <div class="sideTitle">Explorer</div>
           <div class="tree">
-            <div class="node"><span class="file"></span>README.md <span class="badge">active</span></div>
-            <div class="node"><span class="file"></span>projects.json <span class="badge">WIP</span></div>
-            <div class="node"><span class="file"></span>agents.md <span class="badge">new</span></div>
-            <div class="node"><span class="file"></span>notes.md</div>
+            <div class="node active" data-pane="readme"><span class="file"></span>README.md <span class="badge">active</span></div>
+            <div class="node" data-pane="agents"><span class="file"></span>agents.md <span class="badge">core</span></div>
+            <div class="node" data-pane="projects"><span class="file"></span>projects.json <span class="badge">WIP</span></div>
+            <div class="node" data-pane="links"><span class="file"></span>links.txt</div>
           </div>
 
-          <div class="sideTitle">Focus</div>
+          <div class="sideTitle">Core</div>
           <div class="tree">
-            <div class="node"><span class="file"></span>event-driven systems <span class="badge">core</span></div>
-            <div class="node"><span class="file"></span>cloud ↔ edge <span class="badge">core</span></div>
-            <div class="node"><span class="file"></span>security & identity</div>
-            <div class="node"><span class="file"></span>agentic engineering</div>
-            <div class="node"><span class="file"></span>pragmatic design</div>
+            <div class="node" data-pane="agents"><span class="file"></span>agentic engineering <span class="badge">3 months</span></div>
+            <div class="node" data-pane="readme"><span class="file"></span>distributed systems</div>
+            <div class="node" data-pane="readme"><span class="file"></span>cloud ↔ edge</div>
+            <div class="node" data-pane="readme"><span class="file"></span>security & identity</div>
+          </div>
+
+          <div class="sideTitle">Controls</div>
+          <div class="tree">
+            <div class="node" id="openPalette"><span class="file"></span>Command Palette <span class="badge">Ctrl K</span></div>
           </div>
         </aside>
 
         <section class="editor">
-          <div class="hero">
-            <div class="headline">
-              <h2>Hey — I’m Philippe 👋</h2>
-              <div class="neonline"></div>
-              <p>
-                I’m a software developer based in <b>Montreal</b>, building <b>reliable systems</b> where devices,
-                services, and humans all need to agree on what just happened — even when networks are flaky.
-                I like <b>event-driven architectures</b>, <b>glitch-free state transitions</b>, and shipping
-                things that are <b>boring in production</b> (the best kind of exciting).
-              </p>
-            </div>
+          <!-- README -->
+          <div class="pane active" id="pane-readme">
+            <div class="hero">
+              <div class="headline">
+                <h2>Hey, I’m Philippe 👋</h2>
+                <div class="neonline"></div>
+                <p>
+                  I’m a software developer based in <b>Montreal</b>, building <b>reliable systems</b> where devices,
+                  services, and humans all need to agree on what just happened, even when networks are flaky.
+                  I like <b>event-driven architectures</b>, <b>clean interfaces</b>, and shipping software that is
+                  predictable in production.
+                </p>
+              </div>
 
-            <div class="callouts">
-              <div class="card">
-                <h3>Now</h3>
-                <div class="kv">
-                  <div>Handle</div><div><b>Deasel011</b></div>
-                  <div>Work</div><div><b>Genetec</b> · physical security / access control</div>
-                  <div>Theme</div><div><span class="hi">Synthwave ’84</span> · <span class="hi2">VS Code</span> energy</div>
-                  <div>Mode</div><div><b>Go</b>, <b>.NET</b>, infra automation, secure comms</div>
+              <div class="callouts">
+                <div class="card">
+                  <h3>Now</h3>
+                  <div class="kv">
+                    <div>Handle</div><div><b>Deasel011</b></div>
+                    <div>Work</div><div><b>Genetec</b> · physical security / access control</div>
+                    <div>Core</div><div><span class="hi">Agentic engineering</span> · <span class="hi2">event-driven</span></div>
+                    <div>Stack</div><div><b>Go</b>, <b>.NET</b>, Azure, Terraform, secure comms</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <h3>Principles</h3>
+                  <ul class="list">
+                    <li><b>Clear over clever</b>, keep it readable and testable.</li>
+                    <li><b>Reality first</b>, latency and partitions are part of the design.</li>
+                    <li><b>Automate the boring</b>, pipelines and reproducibility win.</li>
+                  </ul>
                 </div>
               </div>
-              <div class="card">
-                <h3>Principles</h3>
+            </div>
+
+            <div class="grid">
+              <div class="card span6">
+                <h3>Core focus</h3>
                 <ul class="list">
-                  <li><b>Clear over clever</b> — reduce surface area, keep it readable.</li>
-                  <li><b>Errors are values</b> — handle them, don’t hide them.</li>
-                  <li><b>Design for reality</b> — latency, partitions, offline devices.</li>
+                  <li><b>Agentic engineering</b>, tool driven workflows, planning, testing, implementation loops.</li>
+                  <li><b>Distributed systems</b>, messaging patterns, consistency, observability.</li>
+                  <li><b>Cloud-to-edge</b>, resilient device links, offline and reconnect behavior.</li>
+                  <li><b>Security</b>, certificates, identity, key management, hardening.</li>
                 </ul>
+              </div>
+
+              <div class="card span6">
+                <h3>What I like</h3>
+                <ul class="list">
+                  <li><b>Go</b> for small language and big leverage.</li>
+                  <li><b>.NET</b> for production systems and strong tooling.</li>
+                  <li><b>Functional ideas</b>, compositional design, applied carefully.</li>
+                  <li><b>Docs that ship</b>, specs and test plans that stay useful.</li>
+                </ul>
+              </div>
+
+              <div class="card span12">
+                <h3>Links</h3>
+                <div class="links" aria-label="links">
+                  <a class="btn" href="https://github.com/Deasel011/" target="_blank" rel="noreferrer">GitHub</a>
+                  <a class="btn" href="https://www.linkedin.com/in/deasel/" target="_blank" rel="noreferrer">LinkedIn</a>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="grid">
-            <div class="card span6">
-              <h3>What I work on</h3>
-              <ul class="list">
-                <li><b>Distributed systems</b> and messaging (NATS/JetStream patterns, event sourcing-ish workflows).</li>
-                <li><b>Cloud-to-edge</b> communication and multi-tenant platform foundations.</li>
-                <li><b>Security</b>: certificates, identity, key management, and hardening flows.</li>
-                <li><b>DevOps automation</b>: Azure pipelines, Terraform modules, repeatable environments.</li>
-              </ul>
+          <!-- Agents -->
+          <div class="pane" id="pane-agents">
+            <div class="hero">
+              <div class="headline">
+                <h2>Agentic engineering</h2>
+                <div class="neonline"></div>
+                <p>
+                  In the last <b>3 months</b> I have gone deep on agentic engineering. I build workflows where models and tools
+                  cooperate to turn intent into shipped code with strong guardrails.
+                </p>
+              </div>
+
+              <div class="callouts">
+                <div class="card">
+                  <h3>Tooling I dabble with</h3>
+                  <ul class="list">
+                    <li><b>Claude</b> and structured prompting.</li>
+                    <li><b>Codex</b> style coding agents and repo workflows.</li>
+                    <li><b>Droid</b> and multi agent style iteration.</li>
+                  </ul>
+                </div>
+                <div class="card">
+                  <h3>Models I test</h3>
+                  <ul class="list">
+                    <li><b>Opus</b>, planning and writing.</li>
+                    <li><b>GPT-X-Codex</b>, coding loops.</li>
+                    <li><b>Gemini Pro</b>, exploration and synthesis.</li>
+                    <li><b>MiniMax M2.5</b>, comparative behavior tests.</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div class="card span6">
-              <h3>What I like</h3>
-              <ul class="list">
-                <li><b>Go</b> for “small language, big leverage.”</li>
-                <li><b>.NET</b> for strong tooling + pragmatic production systems.</li>
-                <li><b>Functional ideas</b> (FRP-inspired patterns, compositional design) — applied carefully.</li>
-                <li><b>Docs that ship</b>: specs, test plans, diagrams that stay useful.</li>
-              </ul>
+            <div class="grid">
+              <div class="card span12">
+                <h3>My current loop</h3>
+                <pre class="codeblock" aria-label="agent pipeline">
+<span class="dim"># Agentic workflow, optimized for shipping</span>
+<span class="k">Intent</span>  ->  <span class="k">Design</span>  ->  <span class="k">Plan</span>  ->  <span class="k">Test</span>  ->  <span class="k">Implement</span>  ->  <span class="k">Review</span>  ->  <span class="k">Ship</span>
+            |         |         |            |            |
+            v         v         v            v            v
+        <span class="p">Docs</span>     <span class="p">Board</span>    <span class="p">Tests</span>       <span class="p">PR</span>        <span class="p">Release</span>
+
+<span class="dim">Guardrails:</span> minimal scope · reproducible steps · automated checks · short feedback loops
+                </pre>
+              </div>
+
+              <div class="card span12">
+                <h3>Why it clicked</h3>
+                <ul class="list">
+                  <li>I like breaking problems into <b>tight iterations</b> with explicit artifacts.</li>
+                  <li>I prefer agents that fight bloat and keep an <b>MVP mindset</b>.</li>
+                  <li>I enjoy comparing model strengths across <b>planning</b>, <b>coding</b>, and <b>review</b>.</li>
+                </ul>
+              </div>
+
+              <div class="card span12">
+                <h3>Agent palette</h3>
+                <pre class="codeblock" aria-label="agent palette">
+<span class="dim"># A tiny menu of roles I use in practice</span>
+<span class="y">Project Manager</span>  : scope, questions, MVP pressure
+<span class="y">Testing Agent</span>    : TDD flow, test plan, edge cases
+<span class="y">Coding Agent</span>      : implement cleanly, avoid premature abstractions
+<span class="y">Engineer</span>          : review, security, lint, quality gate
+                </pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projects -->
+          <div class="pane" id="pane-projects">
+            <div class="hero">
+              <div class="headline">
+                <h2>projects.json</h2>
+                <div class="neonline"></div>
+                <p>
+                  This is intentionally minimal. Add your favorite public repos and a one liner. Keep it sharp.
+                </p>
+              </div>
+              <div class="callouts">
+                <div class="card">
+                  <h3>Tip</h3>
+                  <ul class="list">
+                    <li>Pick 3 to 6 projects.</li>
+                    <li>Write one line each.</li>
+                    <li>Link and ship.</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div class="card span12">
-              <h3>Agentic engineering (current obsession)</h3>
-              <ul class="list">
-                <li>I’ve been diving deep into <b>agentic engineering</b>: building workflows where tools + models cooperate to design, test, and implement work.</li>
-                <li>I tinker with agent tooling like <b>Claude</b>, <b>Codex</b>, and <b>Droid</b> and evaluate different model “personalities” for planning vs implementation.</li>
-                <li>Models I’m currently experimenting with include <b>Opus</b>, <b>GPT-X-Codex</b>, <b>Gemini Pro</b>, and <b>MiniMax M2.5</b> (and friends).</li>
-              </ul>
+            <div class="grid">
+              <div class="card span12">
+                <h3>Template</h3>
+                <pre class="codeblock" aria-label="projects json">
+<span class="dim">{</span>
+  <span class="k">"highlights"</span><span class="dim">: [</span>
+    <span class="dim">{</span> <span class="k">"name"</span><span class="dim">:</span> <span class="p">"repo-name"</span><span class="dim">,</span> <span class="k">"url"</span><span class="dim">:</span> <span class="p">"https://github.com/Deasel011/repo"</span><span class="dim">,</span> <span class="k">"blurb"</span><span class="dim">:</span> <span class="p">"one line description"</span> <span class="dim">}</span>
+  <span class="dim">]</span>
+<span class="dim">}</span>
+                </pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="pane" id="pane-links">
+            <div class="hero">
+              <div class="headline">
+                <h2>links.txt</h2>
+                <div class="neonline"></div>
+                <p>
+                  Public links only. No email on purpose.
+                </p>
+              </div>
+              <div class="callouts">
+                <div class="card">
+                  <h3>Links</h3>
+                  <div class="links">
+                    <a class="btn" href="https://github.com/Deasel011/" target="_blank" rel="noreferrer">GitHub</a>
+                    <a class="btn" href="https://www.linkedin.com/in/deasel/" target="_blank" rel="noreferrer">LinkedIn</a>
+                  </div>
+                </div>
+                <div class="card">
+                  <h3>Palette</h3>
+                  <ul class="list">
+                    <li>Press <b>Ctrl K</b> (or <b>Cmd K</b> on Mac).</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div class="card span12">
-              <h3>Side quests & experiments</h3>
-              <ul class="list">
-                <li>FRP-inspired systems and <b>Sodium-style</b> experiments in Go (learning from “glitch-free” semantics).</li>
-                <li>Small automation and platform experiments (streams, watchers, request/reply patterns).</li>
-                <li>Creative work: icons, pixel art, synthwave visuals, and “developer aesthetic” UI play.</li>
-              </ul>
-
-              <div class="links" aria-label="links">
-                <a class="btn" href="https://github.com/Deasel011/" target="_blank" rel="noreferrer">GitHub</a>
-                <a class="btn" href="https://www.linkedin.com/in/deasel/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <div class="grid">
+              <div class="card span12">
+                <h3>Raw</h3>
+                <pre class="codeblock">github: https://github.com/Deasel011/
+linkedin: https://www.linkedin.com/in/deasel/
+                </pre>
               </div>
             </div>
           </div>
@@ -325,9 +795,136 @@
         <span class="prompt">deasel@github-pages</span>
         <span>~</span>
         <span>$</span>
-        <span>cat agents.md <span class="cursor" aria-hidden="true"></span></span>
+        <span id="terminalLine">cat README.md <span class="cursor" aria-hidden="true"></span></span>
       </footer>
     </main>
   </div>
+
+  <!-- Command palette -->
+  <div class="paletteBackdrop" id="paletteBackdrop" aria-hidden="true">
+    <div class="palette" role="dialog" aria-label="Command Palette">
+      <div class="paletteTop">
+        <input id="paletteInput" type="text" placeholder="Type a command (examples: agents, readme, links)..." autocomplete="off" />
+      </div>
+      <div class="paletteHint">Enter to run · Esc to close · Ctrl K to toggle</div>
+      <div class="paletteList" id="paletteList"></div>
+    </div>
+  </div>
+
+  <script>
+    const panes = {
+      readme:  { title: "README.md",  term: "cat README.md" },
+      agents:  { title: "agents.md",  term: "cat agents.md" },
+      projects:{ title: "projects.json", term: "cat projects.json" },
+      links:   { title: "links.txt",  term: "cat links.txt" }
+    };
+
+    const tabEls = Array.from(document.querySelectorAll(".tab"));
+    const nodeEls = Array.from(document.querySelectorAll(".node[data-pane]"));
+    const terminalLine = document.getElementById("terminalLine");
+
+    function setActivePane(key){
+      Object.keys(panes).forEach(k => {
+        const el = document.getElementById("pane-" + k);
+        if (el) el.classList.toggle("active", k === key);
+      });
+
+      tabEls.forEach(t => t.classList.toggle("active", t.dataset.pane === key));
+      nodeEls.forEach(n => n.classList.toggle("active", n.dataset.pane === key));
+
+      terminalLine.innerHTML = panes[key].term + ' <span class="cursor" aria-hidden="true"></span>';
+      history.replaceState(null, "", "#" + key);
+    }
+
+    tabEls.forEach(t => t.addEventListener("click", () => setActivePane(t.dataset.pane)));
+    nodeEls.forEach(n => n.addEventListener("click", () => setActivePane(n.dataset.pane)));
+
+    const initial = (location.hash || "#readme").replace("#","");
+    if (panes[initial]) setActivePane(initial);
+
+    /* Command palette */
+    const backdrop = document.getElementById("paletteBackdrop");
+    const input = document.getElementById("paletteInput");
+    const list = document.getElementById("paletteList");
+    const openBtn = document.getElementById("openPalette");
+
+    const commands = [
+      { key:"readme", label:"Open README.md", hint:"readme" },
+      { key:"agents", label:"Open agents.md", hint:"agents" },
+      { key:"projects", label:"Open projects.json", hint:"projects" },
+      { key:"links", label:"Open links.txt", hint:"links" },
+      { key:"github", label:"Open GitHub (new tab)", hint:"github.com" },
+      { key:"linkedin", label:"Open LinkedIn (new tab)", hint:"linkedin.com" }
+    ];
+
+    function renderCommands(filterText){
+      const q = (filterText || "").trim().toLowerCase();
+      const filtered = commands.filter(c => !q || c.label.toLowerCase().includes(q) || c.hint.toLowerCase().includes(q));
+      list.innerHTML = filtered.map(c => `
+        <div class="cmd" data-cmd="${c.key}">
+          <div class="left">
+            <div class="spark"></div>
+            <div class="name">${c.label}</div>
+          </div>
+          <div class="keys">${c.hint}</div>
+        </div>
+      `).join("");
+
+      Array.from(list.querySelectorAll(".cmd")).forEach(el => {
+        el.addEventListener("click", () => runCommand(el.dataset.cmd));
+      });
+    }
+
+    function openPalette(){
+      backdrop.style.display = "flex";
+      backdrop.setAttribute("aria-hidden", "false");
+      input.value = "";
+      renderCommands("");
+      setTimeout(() => input.focus(), 0);
+    }
+
+    function closePalette(){
+      backdrop.style.display = "none";
+      backdrop.setAttribute("aria-hidden", "true");
+    }
+
+    function runCommand(key){
+      if (panes[key]) {
+        setActivePane(key);
+        closePalette();
+        return;
+      }
+      if (key === "github") window.open("https://github.com/Deasel011/", "_blank", "noopener,noreferrer");
+      if (key === "linkedin") window.open("https://www.linkedin.com/in/deasel/", "_blank", "noopener,noreferrer");
+      closePalette();
+    }
+
+    input.addEventListener("input", (e) => renderCommands(e.target.value));
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const first = list.querySelector(".cmd");
+        if (first) runCommand(first.dataset.cmd);
+      }
+      if (e.key === "Escape") closePalette();
+    });
+
+    backdrop.addEventListener("click", (e) => {
+      if (e.target === backdrop) closePalette();
+    });
+
+    openBtn.addEventListener("click", openPalette);
+
+    document.addEventListener("keydown", (e) => {
+      const isMac = navigator.platform.toUpperCase().includes("MAC");
+      const modK = (isMac && e.metaKey && e.key.toLowerCase() === "k") || (!isMac && e.ctrlKey && e.key.toLowerCase() === "k");
+      if (modK) {
+        e.preventDefault();
+        if (backdrop.style.display === "flex") closePalette();
+        else openPalette();
+      }
+      if (e.key === "Escape" && backdrop.style.display === "flex") closePalette();
+    });
+  </script>
 </body>
 </html>
