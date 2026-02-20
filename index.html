@@ -2,386 +2,194 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0b1020" />
-  <title>Philippe Deslongchamps — Synthwave Dev Page</title>
-  <meta name="description" content="Philippe Deslongchamps — software developer. Distributed systems, NATS, Go, .NET, cloud-to-edge, security, and synthwave vibes." />
+  <title>Philippe Deslongchamps — Deasel011</title>
+  <meta name="description" content="Philippe Deslongchamps (Deasel011) — software developer. Distributed systems, NATS/JetStream, Go, .NET, cloud-to-edge, security, and agentic engineering." />
 
-  <!-- Optional: a nice monospace. If you want 100% offline, remove this and rely on system fonts. -->
+  <meta property="og:title" content="Philippe Deslongchamps — Deasel011" />
+  <meta property="og:description" content="Distributed systems · cloud-to-edge · security · agentic engineering · synthwave vibes" />
+  <meta property="og:type" content="website" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* Synthwave 84-ish palette */
-      --bg0:#070914;
-      --bg1:#0b1020;
-      --panel:#0f1733cc;
-      --panel2:#0b122acc;
-      --text:#e6e6ff;
-      --muted:#a8b0ffcc;
-      --muted2:#8aa0ff99;
-      --pink:#ff4fd8;
-      --purple:#a855ff;
-      --cyan:#2de2e6;
-      --blue:#3f8cff;
-      --yellow:#ffe66d;
-      --good:#4dff88;
-
-      /* VS Code-ish */
-      --border: #283055;
-      --tab: #121a38;
-      --tabActive:#18224a;
-      --shadow: 0 20px 80px rgba(0,0,0,.55);
-
-      --radius: 18px;
-      --radius2: 14px;
-      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --bg0:#070914; --bg1:#0b1020;
+      --text:#e6e6ff; --muted:#a8b0ffcc; --muted2:#8aa0ff99;
+      --pink:#ff4fd8; --purple:#a855ff; --cyan:#2de2e6; --blue:#3f8cff;
+      --yellow:#ffe66d; --good:#4dff88;
+      --border:#283055; --tab:#121a38; --tabActive:#18224a;
+      --shadow:0 20px 80px rgba(0,0,0,.55);
+      --radius:18px; --radius2:14px;
+      --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
     body{
-      margin:0;
-      font-family: var(--mono);
-      color: var(--text);
-      background: radial-gradient(1200px 700px at 60% 10%, rgba(168,85,255,.22), transparent 60%),
-                  radial-gradient(900px 600px at 25% 25%, rgba(45,226,230,.14), transparent 55%),
-                  radial-gradient(700px 500px at 70% 55%, rgba(255,79,216,.12), transparent 60%),
-                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      margin:0; font-family:var(--mono); color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 60% 10%, rgba(168,85,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 25% 25%, rgba(45,226,230,.14), transparent 55%),
+        radial-gradient(700px 500px at 70% 55%, rgba(255,79,216,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
-
-    /* Subtle animated star noise + scanlines */
     .fx::before{
-      content:"";
-      position:fixed; inset:0;
+      content:""; position:fixed; inset:0; pointer-events:none;
       background-image:
         radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.35) 40%, transparent 41%),
         radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.25) 40%, transparent 41%),
         radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.2) 40%, transparent 41%),
         radial-gradient(1px 1px at 80% 75%, rgba(255,255,255,.18) 40%, transparent 41%),
         radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,.15) 40%, transparent 41%);
-      opacity:.55;
-      pointer-events:none;
-      animation: drift 12s linear infinite;
-      mix-blend-mode: screen;
+      opacity:.55; animation:drift 12s linear infinite; mix-blend-mode:screen;
     }
     .fx::after{
-      content:"";
-      position:fixed; inset:0;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(0,0,0,0) 0px,
-        rgba(0,0,0,0) 2px,
-        rgba(0,0,0,.12) 3px
-      );
-      opacity:.35;
-      pointer-events:none;
-      mix-blend-mode: multiply;
+      content:""; position:fixed; inset:0; pointer-events:none;
+      background:repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,.12) 3px);
+      opacity:.35; mix-blend-mode:multiply;
     }
-    @keyframes drift{
-      0%{ transform: translate3d(0,0,0); }
-      100%{ transform: translate3d(-12px, 18px, 0); }
-    }
+    @keyframes drift{0%{transform:translate3d(0,0,0);}100%{transform:translate3d(-12px,18px,0);}}
 
-    .wrap{
-      max-width: 1120px;
-      margin: 40px auto 60px;
-      padding: 0 18px;
-    }
+    .wrap{max-width:1120px; margin:40px auto 60px; padding:0 18px;}
 
-    /* Header “status bar” */
     .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding: 10px 14px;
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(18,26,56,.75), rgba(10,14,28,.55));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:10px 14px; border:1px solid var(--border); border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(18,26,56,.75), rgba(10,14,28,.55));
+      box-shadow:var(--shadow); backdrop-filter:blur(10px);
     }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 220px;
-    }
-    .dots{ display:flex; gap:7px; }
-    .dot{ width:10px; height:10px; border-radius:999px; opacity:.9; }
-    .dot.r{ background:#ff5f56; }
-    .dot.y{ background:#ffbd2e; }
-    .dot.g{ background:#27c93f; }
-
-    .brand h1{
-      margin:0;
-      font-size: 14px;
-      letter-spacing:.4px;
-      font-weight: 700;
-      white-space:nowrap;
-    }
-    .tagline{
-      font-size: 12px;
-      color: var(--muted);
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-    .pillrow{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .brand{display:flex; align-items:center; gap:12px; min-width:220px;}
+    .dots{display:flex; gap:7px;}
+    .dot{width:10px; height:10px; border-radius:999px; opacity:.9;}
+    .dot.r{background:#ff5f56;} .dot.y{background:#ffbd2e;} .dot.g{background:#27c93f;}
+    .brand h1{margin:0; font-size:14px; letter-spacing:.4px; font-weight:700; white-space:nowrap;}
+    .tagline{font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
     .pill{
-      font-size: 11px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(63,140,255,.35);
-      background: rgba(18,26,56,.55);
-      color: var(--text);
-      box-shadow: 0 0 0 1px rgba(45,226,230,.08) inset;
+      font-size:11px; padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(63,140,255,.35); background:rgba(18,26,56,.55);
+      box-shadow:0 0 0 1px rgba(45,226,230,.08) inset;
     }
-    .pill b{ color: var(--cyan); font-weight:700; }
+    .pill b{color:var(--cyan); font-weight:700;}
 
-    /* Main “editor” frame */
     .frame{
-      margin-top: 16px;
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: rgba(8,12,26,.55);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      backdrop-filter: blur(10px);
+      margin-top:16px; border:1px solid var(--border); border-radius:var(--radius);
+      background:rgba(8,12,26,.55); box-shadow:var(--shadow); overflow:hidden;
+      backdrop-filter:blur(10px);
     }
     .tabs{
-      display:flex;
-      gap:6px;
-      padding: 10px 10px 0;
-      background: linear-gradient(180deg, rgba(18,26,56,.65), rgba(8,12,26,.4));
-      border-bottom: 1px solid rgba(40,48,85,.75);
+      display:flex; gap:6px; padding:10px 10px 0;
+      background:linear-gradient(180deg, rgba(18,26,56,.65), rgba(8,12,26,.4));
+      border-bottom:1px solid rgba(40,48,85,.75);
     }
     .tab{
-      display:flex; align-items:center; gap:8px;
-      padding: 10px 12px;
-      border-radius: 12px 12px 0 0;
-      background: var(--tab);
-      border: 1px solid rgba(40,48,85,.75);
-      border-bottom:none;
-      color: var(--muted);
-      font-size: 12px;
+      display:flex; align-items:center; gap:8px; padding:10px 12px;
+      border-radius:12px 12px 0 0; background:var(--tab);
+      border:1px solid rgba(40,48,85,.75); border-bottom:none;
+      color:var(--muted); font-size:12px;
     }
-    .tab .ico{ width:10px; height:10px; border-radius:3px; background: rgba(168,85,255,.55); }
-    .tab.active{
-      background: var(--tabActive);
-      color: var(--text);
-      box-shadow: 0 -10px 40px rgba(255,79,216,.12);
-    }
-    .tab.active .ico{ background: rgba(45,226,230,.7); }
+    .tab .ico{width:10px; height:10px; border-radius:3px; background:rgba(168,85,255,.55);}
+    .tab.active{background:var(--tabActive); color:var(--text); box-shadow:0 -10px 40px rgba(255,79,216,.12);}
+    .tab.active .ico{background:rgba(45,226,230,.7);}
 
-    .content{
-      display:grid;
-      grid-template-columns: 260px 1fr;
-      min-height: 620px;
-    }
-
-    /* Explorer sidebar */
+    .content{display:grid; grid-template-columns:260px 1fr; min-height:620px;}
     .sidebar{
-      border-right: 1px solid rgba(40,48,85,.75);
-      background: linear-gradient(180deg, rgba(11,18,42,.55), rgba(10,14,28,.35));
-      padding: 14px 12px;
+      border-right:1px solid rgba(40,48,85,.75);
+      background:linear-gradient(180deg, rgba(11,18,42,.55), rgba(10,14,28,.35));
+      padding:14px 12px;
     }
     .sideTitle{
-      font-size: 11px;
-      color: var(--muted2);
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      margin: 2px 8px 10px;
+      font-size:11px; color:var(--muted2); letter-spacing:.8px; text-transform:uppercase;
+      margin:2px 8px 10px;
     }
-    .tree{
-      display:flex; flex-direction:column; gap:6px;
-      padding: 6px 6px 10px;
-    }
+    .tree{display:flex; flex-direction:column; gap:6px; padding:6px 6px 10px;}
     .node{
-      display:flex; align-items:center; gap:10px;
-      padding: 10px 10px;
-      border-radius: 12px;
-      color: var(--muted);
-      border: 1px solid transparent;
-      cursor: default;
-      user-select:none;
+      display:flex; align-items:center; gap:10px; padding:10px 10px; border-radius:12px;
+      color:var(--muted); border:1px solid transparent; user-select:none;
     }
-    .node:hover{
-      background: rgba(18,26,56,.45);
-      border-color: rgba(63,140,255,.22);
-      color: var(--text);
-    }
+    .node:hover{background:rgba(18,26,56,.45); border-color:rgba(63,140,255,.22); color:var(--text);}
     .node .badge{
-      margin-left:auto;
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(45,226,230,.25);
-      color: var(--cyan);
-      background: rgba(45,226,230,.08);
+      margin-left:auto; font-size:10px; padding:2px 7px; border-radius:999px;
+      border:1px solid rgba(45,226,230,.25); color:var(--cyan); background:rgba(45,226,230,.08);
     }
     .node .file{
-      width: 10px; height: 12px; border-radius: 2px;
-      background: rgba(255,230,109,.55);
-      box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset;
+      width:10px; height:12px; border-radius:2px; background:rgba(255,230,109,.55);
+      box-shadow:0 0 0 1px rgba(0,0,0,.25) inset;
     }
 
-    /* Editor panel */
     .editor{
-      padding: 18px 18px 0;
+      padding:18px 18px 0;
       background:
         radial-gradient(900px 420px at 80% 0%, rgba(255,79,216,.09), transparent 65%),
         radial-gradient(600px 420px at 15% 10%, rgba(45,226,230,.08), transparent 60%),
         linear-gradient(180deg, rgba(8,12,26,.25), rgba(8,12,26,.45));
     }
+    .hero{display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:16px;}
+    .headline{min-width:280px; flex:1;}
+    .headline h2{margin:0; font-size:22px; letter-spacing:.2px;}
+    .headline p{margin:10px 0 0; color:var(--muted); line-height:1.55; font-size:13px; max-width:66ch;}
 
-    .hero{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 18px;
-      margin-bottom: 16px;
-    }
-    .headline{
-      min-width: 280px;
-      flex: 1;
-    }
-    .headline h2{
-      margin: 0;
-      font-size: 22px;
-      letter-spacing:.2px;
-    }
-    .headline p{
-      margin: 10px 0 0;
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 13px;
-      max-width: 66ch;
+    .neonline{
+      height:2px;
+      background:linear-gradient(90deg, transparent, rgba(255,79,216,.8), rgba(45,226,230,.8), transparent);
+      opacity:.7; filter:blur(.2px); margin:10px 0 14px;
     }
 
-    .callouts{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-width: 280px;
-      flex: 0 0 320px;
-    }
+    .callouts{display:flex; flex-direction:column; gap:10px; min-width:280px; flex:0 0 320px;}
     .card{
-      border: 1px solid rgba(40,48,85,.75);
-      border-radius: var(--radius2);
-      background: rgba(15,23,51,.55);
-      padding: 12px 12px;
-      box-shadow: 0 0 0 1px rgba(255,79,216,.06) inset;
+      border:1px solid rgba(40,48,85,.75);
+      border-radius:var(--radius2);
+      background:rgba(15,23,51,.55);
+      padding:12px; box-shadow:0 0 0 1px rgba(255,79,216,.06) inset;
     }
-    .card h3{
-      margin:0 0 8px;
-      font-size: 12px;
-      letter-spacing:.6px;
-      text-transform: uppercase;
-      color: var(--muted2);
-    }
-    .kv{
-      display:grid;
-      grid-template-columns: 92px 1fr;
-      gap: 6px 10px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .kv b{ color: var(--text); font-weight:700; }
-    .kv .hi{ color: var(--pink); font-weight:700; }
-    .kv .hi2{ color: var(--cyan); font-weight:700; }
+    .card h3{margin:0 0 8px; font-size:12px; letter-spacing:.6px; text-transform:uppercase; color:var(--muted2);}
+    .kv{display:grid; grid-template-columns:92px 1fr; gap:6px 10px; font-size:12px; color:var(--muted);}
+    .kv b{color:var(--text); font-weight:700;}
+    .kv .hi{color:var(--pink); font-weight:700;}
+    .kv .hi2{color:var(--cyan); font-weight:700;}
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-      padding-bottom: 18px;
-    }
-    .span6{ grid-column: span 6; }
-    .span12{ grid-column: span 12; }
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:12px; padding-bottom:18px;}
+    .span6{grid-column:span 6;}
+    .span12{grid-column:span 12;}
 
-    @media (max-width: 960px){
-      .content{ grid-template-columns: 1fr; }
-      .sidebar{ display:none; }
-      .callouts{ flex: 1 1 320px; }
-    }
-    @media (max-width: 720px){
-      .span6{ grid-column: span 12; }
-      .topbar{ align-items:flex-start; flex-direction:column; }
-      .pillrow{ justify-content:flex-start; }
-      .tagline{ white-space: normal; }
-    }
+    @media (max-width: 960px){ .content{grid-template-columns:1fr;} .sidebar{display:none;} .callouts{flex:1 1 320px;} }
+    @media (max-width: 720px){ .span6{grid-column:span 12;} .topbar{align-items:flex-start; flex-direction:column;} .pillrow{justify-content:flex-start;} .tagline{white-space:normal;} }
 
-    .list{
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height:1.65;
-    }
-    .list li{ margin: 6px 0; }
-    .list b{ color: var(--text); }
+    .list{margin:0; padding-left:18px; color:var(--muted); font-size:12.5px; line-height:1.65;}
+    .list li{margin:6px 0;}
+    .list b{color:var(--text);}
 
-    .links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top: 10px;
-    }
+    .links{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
     a.btn{
-      text-decoration:none;
-      color: var(--text);
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(63,140,255,.35);
-      background: rgba(18,26,56,.55);
-      box-shadow: 0 0 0 1px rgba(45,226,230,.08) inset;
+      text-decoration:none; color:var(--text); font-size:12px; padding:8px 10px;
+      border-radius:12px; border:1px solid rgba(63,140,255,.35);
+      background:rgba(18,26,56,.55); box-shadow:0 0 0 1px rgba(45,226,230,.08) inset;
     }
     a.btn:hover{
-      border-color: rgba(45,226,230,.45);
-      box-shadow: 0 0 0 1px rgba(255,79,216,.10) inset, 0 0 24px rgba(45,226,230,.12);
-      transform: translateY(-1px);
-      transition: .15s ease;
+      border-color:rgba(45,226,230,.45);
+      box-shadow:0 0 0 1px rgba(255,79,216,.10) inset, 0 0 24px rgba(45,226,230,.12);
+      transform:translateY(-1px); transition:.15s ease;
     }
 
-    /* Terminal footer */
     .terminal{
-      border-top: 1px solid rgba(40,48,85,.75);
-      background: rgba(7,9,20,.55);
-      padding: 12px 14px;
-      color: var(--muted);
-      font-size: 12px;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
+      border-top:1px solid rgba(40,48,85,.75);
+      background:rgba(7,9,20,.55);
+      padding:12px 14px;
+      color:var(--muted);
+      font-size:12px;
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
     }
-    .prompt{
-      color: var(--good);
-      font-weight:700;
-    }
+    .prompt{color:var(--good); font-weight:700;}
     .cursor{
-      display:inline-block;
-      width: 9px; height: 14px;
-      background: rgba(45,226,230,.8);
-      margin-left: 2px;
-      animation: blink 1s steps(2) infinite;
-      vertical-align: -2px;
+      display:inline-block; width:9px; height:14px;
+      background:rgba(45,226,230,.8); margin-left:2px;
+      animation:blink 1s steps(2) infinite; vertical-align:-2px;
     }
-    @keyframes blink{ 50%{ opacity:0; } }
-
-    /* Neon accent line */
-    .neonline{
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(255,79,216,.8), rgba(45,226,230,.8), transparent);
-      opacity:.7;
-      filter: blur(.2px);
-      margin: 10px 0 14px;
-    }
+    @keyframes blink{50%{opacity:0;}}
   </style>
 </head>
 
@@ -392,16 +200,16 @@
         <div class="dots" aria-hidden="true">
           <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
         </div>
-        <h1>philippe.deslongchamps</h1>
+        <h1>deasel011</h1>
       </div>
       <div class="tagline">
-        Software developer · distributed systems · cloud-to-edge · security · synthwave vibes
+        Montreal · distributed systems · cloud-to-edge · security · agentic engineering · synthwave vibes
       </div>
       <div class="pillrow" aria-label="quick tags">
         <div class="pill"><b>Go</b> + .NET</div>
         <div class="pill"><b>NATS</b> / JetStream</div>
         <div class="pill"><b>Azure</b> + Terraform</div>
-        <div class="pill"><b>Crypto</b> + X.509</div>
+        <div class="pill"><b>Agents</b> + tooling</div>
       </div>
     </header>
 
@@ -418,8 +226,8 @@
           <div class="tree">
             <div class="node"><span class="file"></span>README.md <span class="badge">active</span></div>
             <div class="node"><span class="file"></span>projects.json <span class="badge">WIP</span></div>
+            <div class="node"><span class="file"></span>agents.md <span class="badge">new</span></div>
             <div class="node"><span class="file"></span>notes.md</div>
-            <div class="node"><span class="file"></span>contact.txt</div>
           </div>
 
           <div class="sideTitle">Focus</div>
@@ -427,8 +235,8 @@
             <div class="node"><span class="file"></span>event-driven systems <span class="badge">core</span></div>
             <div class="node"><span class="file"></span>cloud ↔ edge <span class="badge">core</span></div>
             <div class="node"><span class="file"></span>security & identity</div>
+            <div class="node"><span class="file"></span>agentic engineering</div>
             <div class="node"><span class="file"></span>pragmatic design</div>
-            <div class="node"><span class="file"></span>FRP experiments</div>
           </div>
         </aside>
 
@@ -449,6 +257,7 @@
               <div class="card">
                 <h3>Now</h3>
                 <div class="kv">
+                  <div>Handle</div><div><b>Deasel011</b></div>
                   <div>Work</div><div><b>Genetec</b> · physical security / access control</div>
                   <div>Theme</div><div><span class="hi">Synthwave ’84</span> · <span class="hi2">VS Code</span> energy</div>
                   <div>Mode</div><div><b>Go</b>, <b>.NET</b>, infra automation, secure comms</div>
@@ -487,38 +296,36 @@
             </div>
 
             <div class="card span12">
+              <h3>Agentic engineering (current obsession)</h3>
+              <ul class="list">
+                <li>I’ve been diving deep into <b>agentic engineering</b>: building workflows where tools + models cooperate to design, test, and implement work.</li>
+                <li>I tinker with agent tooling like <b>Claude</b>, <b>Codex</b>, and <b>Droid</b> and evaluate different model “personalities” for planning vs implementation.</li>
+                <li>Models I’m currently experimenting with include <b>Opus</b>, <b>GPT-X-Codex</b>, <b>Gemini Pro</b>, and <b>MiniMax M2.5</b> (and friends).</li>
+              </ul>
+            </div>
+
+            <div class="card span12">
               <h3>Side quests & experiments</h3>
               <ul class="list">
                 <li>FRP-inspired systems and <b>Sodium-style</b> experiments in Go (learning from “glitch-free” semantics).</li>
-                <li>Small automation and data projects (streaming pipelines, watchers, and toy platforms).</li>
+                <li>Small automation and platform experiments (streams, watchers, request/reply patterns).</li>
                 <li>Creative work: icons, pixel art, synthwave visuals, and “developer aesthetic” UI play.</li>
               </ul>
 
               <div class="links" aria-label="links">
-                <!-- Replace these with your real links -->
-                <a class="btn" href="https://github.com/<your-handle>" target="_blank" rel="noreferrer">GitHub</a>
-                <a class="btn" href="https://dev.to/<your-handle>" target="_blank" rel="noreferrer">DEV.to</a>
-                <a class="btn" href="https://www.linkedin.com/in/<your-handle>/" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a class="btn" href="mailto:you@example.com">Email</a>
+                <a class="btn" href="https://github.com/Deasel011/" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="btn" href="https://www.linkedin.com/in/deasel/" target="_blank" rel="noreferrer">LinkedIn</a>
               </div>
-            </div>
-
-            <div class="card span12">
-              <h3>Contact / Collab</h3>
-              <ul class="list">
-                <li>If you want to chat about <b>event-driven design</b>, <b>Go</b>, <b>NATS</b>, or building systems that survive the real world—ping me.</li>
-                <li>Bonus points if you bring <b>neon grids</b> and a clean README.</li>
-              </ul>
             </div>
           </div>
         </section>
       </div>
 
       <footer class="terminal" aria-label="terminal">
-        <span class="prompt">philippe@github-pages</span>
+        <span class="prompt">deasel@github-pages</span>
         <span>~</span>
         <span>$</span>
-        <span>cat README.md <span class="cursor" aria-hidden="true"></span></span>
+        <span>cat agents.md <span class="cursor" aria-hidden="true"></span></span>
       </footer>
     </main>
   </div>
