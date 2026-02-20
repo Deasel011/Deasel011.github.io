@@ -1,100 +1,526 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deasel Solutions - Software Development Consultancy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-        header {
-            background-color: #4a90e2;
-            padding: 20px 0;
-            text-align: center;
-        }
-        header h1 {
-            color: #ffffff;
-            font-size: 36px;
-            margin: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .services {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-        .service {
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-            flex-basis: 30%;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .service h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .service p {
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        footer {
-            background-color: #4a90e2;
-            padding: 20px 0;
-            text-align: center;
-        }
-        footer p {
-            color: #ffffff;
-            font-size: 14px;
-            margin: 0;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Philippe Deslongchamps — Synthwave Dev Page</title>
+  <meta name="description" content="Philippe Deslongchamps — software developer. Distributed systems, NATS, Go, .NET, cloud-to-edge, security, and synthwave vibes." />
+
+  <!-- Optional: a nice monospace. If you want 100% offline, remove this and rely on system fonts. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Synthwave 84-ish palette */
+      --bg0:#070914;
+      --bg1:#0b1020;
+      --panel:#0f1733cc;
+      --panel2:#0b122acc;
+      --text:#e6e6ff;
+      --muted:#a8b0ffcc;
+      --muted2:#8aa0ff99;
+      --pink:#ff4fd8;
+      --purple:#a855ff;
+      --cyan:#2de2e6;
+      --blue:#3f8cff;
+      --yellow:#ffe66d;
+      --good:#4dff88;
+
+      /* VS Code-ish */
+      --border: #283055;
+      --tab: #121a38;
+      --tabActive:#18224a;
+      --shadow: 0 20px 80px rgba(0,0,0,.55);
+
+      --radius: 18px;
+      --radius2: 14px;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--mono);
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 60% 10%, rgba(168,85,255,.22), transparent 60%),
+                  radial-gradient(900px 600px at 25% 25%, rgba(45,226,230,.14), transparent 55%),
+                  radial-gradient(700px 500px at 70% 55%, rgba(255,79,216,.12), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    /* Subtle animated star noise + scanlines */
+    .fx::before{
+      content:"";
+      position:fixed; inset:0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.35) 40%, transparent 41%),
+        radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.25) 40%, transparent 41%),
+        radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.2) 40%, transparent 41%),
+        radial-gradient(1px 1px at 80% 75%, rgba(255,255,255,.18) 40%, transparent 41%),
+        radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,.15) 40%, transparent 41%);
+      opacity:.55;
+      pointer-events:none;
+      animation: drift 12s linear infinite;
+      mix-blend-mode: screen;
+    }
+    .fx::after{
+      content:"";
+      position:fixed; inset:0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0px,
+        rgba(0,0,0,0) 2px,
+        rgba(0,0,0,.12) 3px
+      );
+      opacity:.35;
+      pointer-events:none;
+      mix-blend-mode: multiply;
+    }
+    @keyframes drift{
+      0%{ transform: translate3d(0,0,0); }
+      100%{ transform: translate3d(-12px, 18px, 0); }
+    }
+
+    .wrap{
+      max-width: 1120px;
+      margin: 40px auto 60px;
+      padding: 0 18px;
+    }
+
+    /* Header “status bar” */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 10px 14px;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(18,26,56,.75), rgba(10,14,28,.55));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .dots{ display:flex; gap:7px; }
+    .dot{ width:10px; height:10px; border-radius:999px; opacity:.9; }
+    .dot.r{ background:#ff5f56; }
+    .dot.y{ background:#ffbd2e; }
+    .dot.g{ background:#27c93f; }
+
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.4px;
+      font-weight: 700;
+      white-space:nowrap;
+    }
+    .tagline{
+      font-size: 12px;
+      color: var(--muted);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .pillrow{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .pill{
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(63,140,255,.35);
+      background: rgba(18,26,56,.55);
+      color: var(--text);
+      box-shadow: 0 0 0 1px rgba(45,226,230,.08) inset;
+    }
+    .pill b{ color: var(--cyan); font-weight:700; }
+
+    /* Main “editor” frame */
+    .frame{
+      margin-top: 16px;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(8,12,26,.55);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .tabs{
+      display:flex;
+      gap:6px;
+      padding: 10px 10px 0;
+      background: linear-gradient(180deg, rgba(18,26,56,.65), rgba(8,12,26,.4));
+      border-bottom: 1px solid rgba(40,48,85,.75);
+    }
+    .tab{
+      display:flex; align-items:center; gap:8px;
+      padding: 10px 12px;
+      border-radius: 12px 12px 0 0;
+      background: var(--tab);
+      border: 1px solid rgba(40,48,85,.75);
+      border-bottom:none;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .tab .ico{ width:10px; height:10px; border-radius:3px; background: rgba(168,85,255,.55); }
+    .tab.active{
+      background: var(--tabActive);
+      color: var(--text);
+      box-shadow: 0 -10px 40px rgba(255,79,216,.12);
+    }
+    .tab.active .ico{ background: rgba(45,226,230,.7); }
+
+    .content{
+      display:grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 620px;
+    }
+
+    /* Explorer sidebar */
+    .sidebar{
+      border-right: 1px solid rgba(40,48,85,.75);
+      background: linear-gradient(180deg, rgba(11,18,42,.55), rgba(10,14,28,.35));
+      padding: 14px 12px;
+    }
+    .sideTitle{
+      font-size: 11px;
+      color: var(--muted2);
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      margin: 2px 8px 10px;
+    }
+    .tree{
+      display:flex; flex-direction:column; gap:6px;
+      padding: 6px 6px 10px;
+    }
+    .node{
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      cursor: default;
+      user-select:none;
+    }
+    .node:hover{
+      background: rgba(18,26,56,.45);
+      border-color: rgba(63,140,255,.22);
+      color: var(--text);
+    }
+    .node .badge{
+      margin-left:auto;
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(45,226,230,.25);
+      color: var(--cyan);
+      background: rgba(45,226,230,.08);
+    }
+    .node .file{
+      width: 10px; height: 12px; border-radius: 2px;
+      background: rgba(255,230,109,.55);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset;
+    }
+
+    /* Editor panel */
+    .editor{
+      padding: 18px 18px 0;
+      background:
+        radial-gradient(900px 420px at 80% 0%, rgba(255,79,216,.09), transparent 65%),
+        radial-gradient(600px 420px at 15% 10%, rgba(45,226,230,.08), transparent 60%),
+        linear-gradient(180deg, rgba(8,12,26,.25), rgba(8,12,26,.45));
+    }
+
+    .hero{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    .headline{
+      min-width: 280px;
+      flex: 1;
+    }
+    .headline h2{
+      margin: 0;
+      font-size: 22px;
+      letter-spacing:.2px;
+    }
+    .headline p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13px;
+      max-width: 66ch;
+    }
+
+    .callouts{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-width: 280px;
+      flex: 0 0 320px;
+    }
+    .card{
+      border: 1px solid rgba(40,48,85,.75);
+      border-radius: var(--radius2);
+      background: rgba(15,23,51,.55);
+      padding: 12px 12px;
+      box-shadow: 0 0 0 1px rgba(255,79,216,.06) inset;
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size: 12px;
+      letter-spacing:.6px;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 92px 1fr;
+      gap: 6px 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .kv b{ color: var(--text); font-weight:700; }
+    .kv .hi{ color: var(--pink); font-weight:700; }
+    .kv .hi2{ color: var(--cyan); font-weight:700; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      padding-bottom: 18px;
+    }
+    .span6{ grid-column: span 6; }
+    .span12{ grid-column: span 12; }
+
+    @media (max-width: 960px){
+      .content{ grid-template-columns: 1fr; }
+      .sidebar{ display:none; }
+      .callouts{ flex: 1 1 320px; }
+    }
+    @media (max-width: 720px){
+      .span6{ grid-column: span 12; }
+      .topbar{ align-items:flex-start; flex-direction:column; }
+      .pillrow{ justify-content:flex-start; }
+      .tagline{ white-space: normal; }
+    }
+
+    .list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height:1.65;
+    }
+    .list li{ margin: 6px 0; }
+    .list b{ color: var(--text); }
+
+    .links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+    }
+    a.btn{
+      text-decoration:none;
+      color: var(--text);
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(63,140,255,.35);
+      background: rgba(18,26,56,.55);
+      box-shadow: 0 0 0 1px rgba(45,226,230,.08) inset;
+    }
+    a.btn:hover{
+      border-color: rgba(45,226,230,.45);
+      box-shadow: 0 0 0 1px rgba(255,79,216,.10) inset, 0 0 24px rgba(45,226,230,.12);
+      transform: translateY(-1px);
+      transition: .15s ease;
+    }
+
+    /* Terminal footer */
+    .terminal{
+      border-top: 1px solid rgba(40,48,85,.75);
+      background: rgba(7,9,20,.55);
+      padding: 12px 14px;
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .prompt{
+      color: var(--good);
+      font-weight:700;
+    }
+    .cursor{
+      display:inline-block;
+      width: 9px; height: 14px;
+      background: rgba(45,226,230,.8);
+      margin-left: 2px;
+      animation: blink 1s steps(2) infinite;
+      vertical-align: -2px;
+    }
+    @keyframes blink{ 50%{ opacity:0; } }
+
+    /* Neon accent line */
+    .neonline{
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,79,216,.8), rgba(45,226,230,.8), transparent);
+      opacity:.7;
+      filter: blur(.2px);
+      margin: 10px 0 14px;
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <h1>Deasel Solutions</h1>
-    </header>
-    <section class="container">
-        <div class="services">
-            <div class="service">
-                <h3>Application Development</h3>
-                <p>Custom applications designed to streamline your processes and improve efficiency.</p>
-            </div>
-            <div class="service">
-                <h3>Cloud-based Web Hosting</h3>
-                <p>Reliable, scalable, and secure cloud-based hosting solutions for optimal performance and security.</p>
-            </div>
-            <div class="service">
-                <h3>SQL Query Optimization</h3>
-                <p>Our experts improve your SQL query performance for faster data retrieval and system efficiency.</p>
-            </div>
-            <div class="service">
-                <h3>Python &amp; C# Development</h3>
-                <p>Versatile applications built using Python and C# to meet your specific requirements.</p>
-            </div>
-            <div class="service">
-                <h3>New Technology Adoption</h3>
-                <p>Stay ahead with our assistance in adopting and integrating the latest technology trends.</p>
-            </div>
-            <div class="service">
-                <h3>Cloud Infrastructure &amp; Azure</h3>
-                <p>Expert design, implementation, and management of cloud infrastructure solutions on Azure.</p>
-            </div>
+
+<body class="fx">
+  <div class="wrap">
+    <header class="topbar" role="banner">
+      <div class="brand">
+        <div class="dots" aria-hidden="true">
+          <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
         </div>
-    </section>
-    <footer>
-        <p>&copy; 2023 Deasel Solutions. All Rights Reserved.</p>
-    </footer>
+        <h1>philippe.deslongchamps</h1>
+      </div>
+      <div class="tagline">
+        Software developer · distributed systems · cloud-to-edge · security · synthwave vibes
+      </div>
+      <div class="pillrow" aria-label="quick tags">
+        <div class="pill"><b>Go</b> + .NET</div>
+        <div class="pill"><b>NATS</b> / JetStream</div>
+        <div class="pill"><b>Azure</b> + Terraform</div>
+        <div class="pill"><b>Crypto</b> + X.509</div>
+      </div>
+    </header>
+
+    <main class="frame" role="main">
+      <div class="tabs" aria-label="editor tabs">
+        <div class="tab active"><span class="ico"></span> README.md</div>
+        <div class="tab"><span class="ico"></span> projects.json</div>
+        <div class="tab"><span class="ico"></span> links.txt</div>
+      </div>
+
+      <div class="content">
+        <aside class="sidebar" aria-label="explorer">
+          <div class="sideTitle">Explorer</div>
+          <div class="tree">
+            <div class="node"><span class="file"></span>README.md <span class="badge">active</span></div>
+            <div class="node"><span class="file"></span>projects.json <span class="badge">WIP</span></div>
+            <div class="node"><span class="file"></span>notes.md</div>
+            <div class="node"><span class="file"></span>contact.txt</div>
+          </div>
+
+          <div class="sideTitle">Focus</div>
+          <div class="tree">
+            <div class="node"><span class="file"></span>event-driven systems <span class="badge">core</span></div>
+            <div class="node"><span class="file"></span>cloud ↔ edge <span class="badge">core</span></div>
+            <div class="node"><span class="file"></span>security & identity</div>
+            <div class="node"><span class="file"></span>pragmatic design</div>
+            <div class="node"><span class="file"></span>FRP experiments</div>
+          </div>
+        </aside>
+
+        <section class="editor">
+          <div class="hero">
+            <div class="headline">
+              <h2>Hey — I’m Philippe 👋</h2>
+              <div class="neonline"></div>
+              <p>
+                I’m a software developer based in <b>Montreal</b>, building <b>reliable systems</b> where devices,
+                services, and humans all need to agree on what just happened — even when networks are flaky.
+                I like <b>event-driven architectures</b>, <b>glitch-free state transitions</b>, and shipping
+                things that are <b>boring in production</b> (the best kind of exciting).
+              </p>
+            </div>
+
+            <div class="callouts">
+              <div class="card">
+                <h3>Now</h3>
+                <div class="kv">
+                  <div>Work</div><div><b>Genetec</b> · physical security / access control</div>
+                  <div>Theme</div><div><span class="hi">Synthwave ’84</span> · <span class="hi2">VS Code</span> energy</div>
+                  <div>Mode</div><div><b>Go</b>, <b>.NET</b>, infra automation, secure comms</div>
+                </div>
+              </div>
+              <div class="card">
+                <h3>Principles</h3>
+                <ul class="list">
+                  <li><b>Clear over clever</b> — reduce surface area, keep it readable.</li>
+                  <li><b>Errors are values</b> — handle them, don’t hide them.</li>
+                  <li><b>Design for reality</b> — latency, partitions, offline devices.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card span6">
+              <h3>What I work on</h3>
+              <ul class="list">
+                <li><b>Distributed systems</b> and messaging (NATS/JetStream patterns, event sourcing-ish workflows).</li>
+                <li><b>Cloud-to-edge</b> communication and multi-tenant platform foundations.</li>
+                <li><b>Security</b>: certificates, identity, key management, and hardening flows.</li>
+                <li><b>DevOps automation</b>: Azure pipelines, Terraform modules, repeatable environments.</li>
+              </ul>
+            </div>
+
+            <div class="card span6">
+              <h3>What I like</h3>
+              <ul class="list">
+                <li><b>Go</b> for “small language, big leverage.”</li>
+                <li><b>.NET</b> for strong tooling + pragmatic production systems.</li>
+                <li><b>Functional ideas</b> (FRP-inspired patterns, compositional design) — applied carefully.</li>
+                <li><b>Docs that ship</b>: specs, test plans, diagrams that stay useful.</li>
+              </ul>
+            </div>
+
+            <div class="card span12">
+              <h3>Side quests & experiments</h3>
+              <ul class="list">
+                <li>FRP-inspired systems and <b>Sodium-style</b> experiments in Go (learning from “glitch-free” semantics).</li>
+                <li>Small automation and data projects (streaming pipelines, watchers, and toy platforms).</li>
+                <li>Creative work: icons, pixel art, synthwave visuals, and “developer aesthetic” UI play.</li>
+              </ul>
+
+              <div class="links" aria-label="links">
+                <!-- Replace these with your real links -->
+                <a class="btn" href="https://github.com/<your-handle>" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="btn" href="https://dev.to/<your-handle>" target="_blank" rel="noreferrer">DEV.to</a>
+                <a class="btn" href="https://www.linkedin.com/in/<your-handle>/" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="btn" href="mailto:you@example.com">Email</a>
+              </div>
+            </div>
+
+            <div class="card span12">
+              <h3>Contact / Collab</h3>
+              <ul class="list">
+                <li>If you want to chat about <b>event-driven design</b>, <b>Go</b>, <b>NATS</b>, or building systems that survive the real world—ping me.</li>
+                <li>Bonus points if you bring <b>neon grids</b> and a clean README.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="terminal" aria-label="terminal">
+        <span class="prompt">philippe@github-pages</span>
+        <span>~</span>
+        <span>$</span>
+        <span>cat README.md <span class="cursor" aria-hidden="true"></span></span>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
